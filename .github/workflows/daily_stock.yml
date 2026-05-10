@@ -1,6 +1,6 @@
 yaml
 
-name: Daily Stock Update
+name: daily-stock
 
 on:
   workflow_dispatch:
