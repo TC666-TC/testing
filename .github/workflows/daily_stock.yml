@@ -18,8 +18,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: |
-          pip install yfinance pandas openpyxl
+        run:  pip install yfinance pandas openpyxl
 
       - name: Run script
         run: python trial.py
