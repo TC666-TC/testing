@@ -1,32 +1,31 @@
-name: Daily Stock Check
+name: Daily Stock Update
 
 on:
- schedule:
-  cron: '08***'
+  schedule:
+    - cron: '30 8 * * *'
   workflow_dispatch:
 
-  jobs:
+jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          pip install yfinance pandas openpyxl
 
-    - name: Run stock script
-      run: python main.py
+      - name: Run script
+        run: python trial.py
 
-    - name: Upload Excel Result
-      uses: actions/upload-artifact@v3
-      with:
-        name: stock-report
-        path: stock_analysis_trial.xlsx
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: stock-report
+          path: my_stocks.xlsx
